@@ -3,45 +3,29 @@ from typing import List
 
 class Solution:
 
-    def binary_search(self, nums, low, high, x):
-
-        if high > low:
-            mid = (high + low) // 2
-            if nums[mid] == x:
-                return mid
-            elif nums[mid] > x:
-                return self.binary_search(nums, low, mid, x)
-            else:
-                return self.binary_search(nums, mid + 1, high, x)
-        else:
-            return None
-
-    def checkThreeSumComb(self, nums, i, k):
-        if i + 1 >= k:
-            return
-        required_j = - (nums[i] + nums[k])
-        j = self.binary_search(nums, i + 1, k, required_j)
-        if j:
-            self.result_list.append([nums[i], nums[j], nums[k]])
-        return
-
     def threeSum(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
-        self.result_list = []
-        self.length = len(nums)
-        if self.length < 3:
+        result_list = []
+        length = len(nums)
+        if length < 3:
             return []
 
-        k = self.length - 1
-        while k > 2:
-            i = 0
-            while i < k:
-                self.checkThreeSumComb(nums, i, k)
-                i += 1
-                while nums[i] == nums[i - 1] and i < k:
-                    i += 1
-            k -= 1
-            while nums[k] == nums[k + 1] and k > 0:
-                k -= 1
-
-        return self.result_list
+        for i in range(length - 2):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            j, k = i + 1, length - 1
+            while j < k:
+                sum = nums[i] + nums[j] + nums[k]
+                if sum < 0:
+                    j += 1
+                elif sum > 0:
+                    k -= 1
+                else:
+                    result_list.append([nums[i], nums[j], nums[k]])
+                    while j < k and nums[j + 1] == nums[j]:
+                        j += 1
+                    j += 1
+                    while k > j and nums[k - 1] == nums[k]:
+                        k -= 1
+                    k -= 1
+        return result_list
