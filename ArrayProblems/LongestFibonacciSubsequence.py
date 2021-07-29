@@ -15,3 +15,57 @@ Input: arr = [1,2,3,4,5,6,7,8]
 Output: 5
 Explanation: The longest subsequence that is fibonacci-like: [1,2,3,5,8].
 '''
+from typing import List
+
+
+class Solution:
+
+    def binarySearch(self, arr, l, r, val):
+        if r is None:
+            r = len(arr) - 1
+        if l <= r:
+            mid = (l + r) // 2
+            if arr[mid] == val:
+                return True, mid
+            elif arr[mid] > val:
+                return self.binarySearch(arr, l, mid - 1, val)
+            else:
+                return self.binarySearch(arr, mid + 1, r, val)
+        else:
+            return False, None
+
+    def lenLongestFibSubseq(self, arr: List[int]) -> int:
+        count = 0
+        lenth = len(arr)
+        for i in range(0, lenth - 2):
+            if lenth - i < count:
+                break
+            for j in range(i + 1, lenth - 1):
+                count_sub = 0
+                next_val = arr[i] + arr[j]
+                if arr[j + 1] > next_val:
+                    continue
+                old_val = arr[j]
+                old_val_idx = j
+                while next_val < arr[-1] + 1:
+                    if arr[old_val_idx + 1] > next_val:
+                        break
+                    is_exist, idx = self.binarySearch(arr[old_val_idx + 1:], 0, None, next_val)
+                    if is_exist:
+                        if count_sub == 0:
+                            count_sub += 3
+                        else:
+                            count_sub += 1
+                        temp = next_val
+                        next_val += old_val
+                        old_val = temp
+                        old_val_idx = idx
+                    else:
+                        break
+                count = max(count, count_sub)
+        return count
+
+
+"""
+[0,1,2,3,4,5,6,7,8,9]
+"""
