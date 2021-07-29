@@ -69,3 +69,39 @@ class Solution:
 """
 [0,1,2,3,4,5,6,7,8,9]
 """
+
+
+# If I use set instead of List then The program will be faster in case of searching as it can search in constant time.
+
+
+def lenLongestFibSubseqSet(arr):
+    count = 0
+    lenth = len(arr)
+    data_set = set(arr)
+    for i in range(0, lenth - 2):
+        if lenth - i < count:
+            break
+        for j in range(i + 1, lenth - 1):
+            count_sub = 0
+            next_val = arr[i] + arr[j]
+            if arr[j + 1] > next_val:
+                continue
+            old_val = arr[j]
+            while next_val < arr[-1] + 1:
+                if arr[j + 1] > next_val:
+                    break
+                if next_val in data_set:
+                    if count_sub == 0:
+                        count_sub += 3
+                    else:
+                        count_sub += 1
+                    next_val, old_val = old_val + next_val, next_val
+                else:
+                    break
+            count = max(count, count_sub)
+    return count
+
+
+"""
+[0,1,2,3,4,5,6,7,8,9]
+"""
