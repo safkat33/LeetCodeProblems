@@ -37,3 +37,7 @@ class Solution:
         if carry == 1:
             res = '1' + res
         return res
+
+
+list = [1,2,3,4,5,6,7]
+print(list[::-1])
