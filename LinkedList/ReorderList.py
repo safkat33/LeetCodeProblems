@@ -26,6 +26,7 @@ class ListNode:
         self.next = next
 class Solution:
     def getLastNode(self, head, last=None):
+        prev = head
         while head.next:
             prev = head
             last = head.next
