@@ -13,7 +13,7 @@ Output: [1,3,4]
 
 
 # Definition for a binary tree node.
-from typing import Optional
+from typing import Optional, List
 
 
 class TreeNode:
