@@ -31,7 +31,6 @@ class Solution:
                     largest_three.append(nums[i])
             if len(smallest_two) < 2:
                 smallest_two.append(nums[i])
-                smallest = min(smallest_two)
             else:
                 smallest = min(smallest_two)
                 if smallest < 0:
@@ -43,3 +42,10 @@ class Solution:
         product_with_small = max(largest_three) * smallest_two[0] * smallest_two[1] if smallest_two[0] < 0 and \
                                                                                        smallest_two[1] < 0 else 0
         return max(product_largest, product_with_small)
+
+    def maximumProductWithSort(self, nums: List[int]) -> int:
+        nums.sort()
+        product_largest = max(nums[-1] * nums[-2] * nums[-3])
+        product_smallest = nums[-1] * nums[0] * nums[1] if nums[0] < 0 and nums[1] < 0 else product_largest
+
+        return max(product_largest, product_smallest)
