@@ -48,7 +48,7 @@ class Solution:
 """
 
 
-class Solution:
+class Solution2:
     def mergeSort(self, array):
         if len(array) == 1:
             return array
@@ -73,11 +73,9 @@ class Solution:
                 right_array.pop(0)
                 j += 1
         if i < length_left:
-            for val in left_array:
-                merged_array.append(val)
+            merged_array += left_array
         if j < length_right:
-            for val in right_array:
-                merged_array.append(val)
+            merged_array += right_array
         return merged_array
 
     def sortArray(self, nums: List[int]) -> List[int]:
