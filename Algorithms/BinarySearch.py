@@ -21,4 +21,7 @@ def binary_search(arr, low, high, x):
     else:
         # Element is not present in the array
         return -1
-print(binary_search([-25,10,20,30,40,50], -25))
+
+
+arr = [-25, 10, 20, 30, 40, 50]
+print(binary_search(arr, 0, len(arr), 40))
