@@ -23,3 +23,7 @@ for line in sys.stdin:
     print(line)
     line = line.rstrip()
     print(line)
+
+
+# for line in sys.stdin:
+#     line = line.rstrip()
