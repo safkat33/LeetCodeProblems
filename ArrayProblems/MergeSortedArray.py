@@ -29,16 +29,13 @@ class Solution:
             if nums1[i] > nums2[j]:
                 nums1.insert(i, nums2[j])
                 nums1.pop()
-                m = m + 1
+                m += 1
                 i += 1
                 j += 1
             else:
                 i += 1
         if j < n:
-            for k in range(j, n):
+            while j < n:
                 nums1[i] = nums2[j]
                 i += 1
                 j += 1
-
-
-
