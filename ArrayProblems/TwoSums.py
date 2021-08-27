@@ -30,8 +30,3 @@ class Solution:
                     continue
                 elif nums[i] + nums[j] == target:
                     return [i, j]
-
-
-
-
-

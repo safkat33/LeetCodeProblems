@@ -20,9 +20,9 @@ from typing import Optional
 
 # Definition for singly-linked list.
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val):
         self.val = val
-        self.next = next
+        self.next = None
 
 
 class Solution:
@@ -55,11 +55,11 @@ class Solution:
 
         current = first_half
         while current and second_half:
-            new = second_half.next
+            new_second = second_half.next
             nxt = current.next
             current.next = second_half
             second_half.next = nxt
-            second_half = new
+            second_half = new_second
             current = nxt
         return first_half
 

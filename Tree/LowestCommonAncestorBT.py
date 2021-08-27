@@ -10,6 +10,8 @@ Input: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
 Output: 3
 Explanation: The LCA of nodes 5 and 1 is 3.
 """
+
+
 # Definition for a binary tree node.
 class TreeNode:
     def __init__(self, x):
@@ -17,16 +19,17 @@ class TreeNode:
         self.left = None
         self.right = None
 
+
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         if root == p or root == q:
             return root
-        left = right = None
+        left_node = right_mode = None
         if root.left:
-            left = self.lowestCommonAncestor(root.left, p, q)
+            left_node = self.lowestCommonAncestor(root.left, p, q)
         if root.right:
-            right = self.lowestCommonAncestor(root.right,p,q)
-        if left and right:
+            right_mode = self.lowestCommonAncestor(root.right, p, q)
+        if left_node and right_mode:
             return root
         else:
-            return left or right
+            return left_node or right_mode

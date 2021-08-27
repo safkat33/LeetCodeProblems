@@ -31,17 +31,20 @@ def dfs(root, array=None):
     return array
 
 
-def dfs_level(root, level, level_hash):
-    # if level_hash is None:
-    #     level_hash = {}
-    if root:
-        if level not in level_hash:
-            level_hash[level] = [root.val]
-        else:
-            level_hash[level].append(root.val)
-        dfs_level(root.left, level + 1, level_hash)
-        dfs_level(root.right, level + 1, level_hash)
-    return level_hash
+class LevelCheck:
+
+    @staticmethod
+    def dfs_level(root, level, level_hash):
+        if level_hash is None:
+            level_hash = {}
+        if root:
+            if level not in level_hash:
+                level_hash[level] = [root.val]
+            else:
+                level_hash[level].append(root.val)
+            LevelCheck.dfs_level(root.left, level + 1, level_hash)
+            LevelCheck.dfs_level(root.right, level + 1, level_hash)
+        return level_hash
 
 
 head = TreeNode(1)
@@ -54,4 +57,4 @@ head.right.right = TreeNode(7)
 
 print('BFS', bfs(head))
 print('DFS', dfs(head))
-print('DFS_LEVEL', dfs_level(head, 0, {}))
+print('DFS_LEVEL', LevelCheck.dfs_level(head, 0, {}))
